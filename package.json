@@ -1,0 +1,25 @@
+{
+  "name": "errbit-proxy",
+  "version": "0.0.1",
+  "description": "Errbit-proxy ============",
+  "main": "server.js",
+  "dependencies": {
+    "airbrake-notice": "~0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deathowl/Errbit-proxy.git"
+  },
+  "author": "deathowl",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "b318ce54fd86b76e088af4aed6b0b7d3a2607f28",
+  "bugs": {
+    "url": "https://github.com/deathowl/Errbit-proxy/issues"
+  }
+}
