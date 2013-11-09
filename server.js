@@ -1,12 +1,13 @@
 var dgram = require("dgram"),
     AirbrakeNotice = require("airbrake-notice"),
     logger = require('./lib/logger')
+    errorparser = require('./lib/errorparser.js')
     config = require('./lib/config');
 
 var server = dgram.createSocket("udp4");
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
-
+    parser = new errorparser.ErrorParser({});
 
 server.on("error", function (err) {
   l.log("server error:\n" + err.stack, 'ERROR');
@@ -14,8 +15,9 @@ server.on("error", function (err) {
 });
 
 server.on("message", function (msg, rinfo) {
-  l.log("server got: " + msg + " from " +
-    rinfo.address + ":" + rinfo.port, 'DEBUG');
+ /* l.log("server got: " + msg + " from " +
+    rinfo.address + ":" + rinfo.port, 'DEBUG');*/
+    parser.validateError(msg);
 });
 
 server.on("listening", function () {
@@ -24,7 +26,7 @@ server.on("listening", function () {
       address.address + ":" + address.port, 'INFO');
 });
 
-server.bind(config.daemonport || 99999);
+server.bind(config.daemonport || 9999);
 
 });
 
