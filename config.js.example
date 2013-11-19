@@ -1,5 +1,6 @@
 {
   host    :"YOUR ERRBIT HOST, OR api.airbrake.io FOR AIRBRAKE",
   port : 80,
+  apiversion : 2, //Use API version 2 if you want to use Errbit
   daemonport : 4135
 }
