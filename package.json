@@ -4,12 +4,13 @@
   "description": "Errbit-proxy ============",
   "main": "server.js",
   "dependencies": {
-    "airbrake-notice": "~0.0.1"
+    "airbrake-notice": "~0.0.1",
+      "xml2js" : "~0.2.8"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node ./bin/errbit-proxy config.js"
   },
   "repository": {
     "type": "git",

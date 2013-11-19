@@ -7,7 +7,7 @@ var dgram = require("dgram"),
 var server = dgram.createSocket("udp4");
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
-    parser = new errorparser.ErrorParser({});
+    parser = new errorparser.ErrorParser(config);
 
 server.on("error", function (err) {
   l.log("server error:\n" + err.stack, 'ERROR');
@@ -17,7 +17,7 @@ server.on("error", function (err) {
 server.on("message", function (msg, rinfo) {
  /* l.log("server got: " + msg + " from " +
     rinfo.address + ":" + rinfo.port, 'DEBUG');*/
-    parser.validateError(msg);
+    parser.forwardError(msg);
 });
 
 server.on("listening", function () {
