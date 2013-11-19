@@ -14,8 +14,6 @@ server.on("error", function (err) {
 });
 
 server.on("message", function (msg, rinfo) {
- /* l.log("server got: " + msg + " from " +
-    rinfo.address + ":" + rinfo.port, 'DEBUG');*/
     parser.forwardError(msg);
 });
 
