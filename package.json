@@ -4,8 +4,6 @@
   "description": "Errbit-proxy ============",
   "main": "server.js",
   "dependencies": {
-    "airbrake-notice": "~0.0.1",
-      "xml2js" : "~0.2.8"
   },
   "devDependencies": {},
   "scripts": {

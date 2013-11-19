@@ -1,5 +1,4 @@
 var dgram = require("dgram"),
-    AirbrakeNotice = require("airbrake-notice"),
     logger = require('./lib/logger')
     errorparser = require('./lib/errorparser.js')
     config = require('./lib/config');
