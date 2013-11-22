@@ -1,9 +1,11 @@
 var dgram = require("dgram"),
     logger = require('./lib/logger')
-    errorparser = require('./lib/errorparser.js')
+    errorparser = require('./lib/errorparser')
     config = require('./lib/config');
+    reassembler = require('./lib/reassembler');
 
 var server = dgram.createSocket("udp4");
+var reassembler = new reassembler.Reassembler();
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
     parser = new errorparser.ErrorParser(config);
@@ -14,7 +16,7 @@ server.on("error", function (err) {
 });
 
 server.on("message", function (msg, rinfo) {
-    parser.forwardError(msg);
+    parser.forwardError(msg, reassembler);
 });
 
 server.on("listening", function () {
