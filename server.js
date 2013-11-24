@@ -6,6 +6,7 @@ var dgram = require("dgram"),
 
 var server = dgram.createSocket("udp4");
 var reassembler = new reassembler.Reassembler();
+
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
     parser = new errorparser.ErrorParser(config);
@@ -26,6 +27,13 @@ server.on("listening", function () {
 });
 
 server.bind(config.daemonport || 9999);
+
+var the_interval = (config.purgerinterval || 60) * 1000;
+setInterval(function() {
+  l.log("Clearing incomplete objects from reassembler cache", 'INFO');
+  reassembler.cleanmemory();
+}, the_interval);
+
 
 });
 
