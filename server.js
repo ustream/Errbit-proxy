@@ -9,7 +9,7 @@ var reassembler = new reassembler.Reassembler();
 
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
-    parser = new errorparser.ErrorParser(config);
+    parser = new errorparser.ErrorParser(config, l);
 
 server.on("error", function (err) {
   l.log("server error:\n" + err.stack, 'ERROR');

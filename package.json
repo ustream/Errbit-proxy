@@ -1,9 +1,10 @@
 {
   "name": "errbit-proxy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Errbit-proxy ============",
   "main": "server.js",
   "dependencies": {
+    "node-statsd-client" : "1.0.2"
   },
   "devDependencies": {},
   "scripts": {

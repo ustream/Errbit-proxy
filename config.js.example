@@ -3,5 +3,10 @@
   port : 80,
   apiversion : 2, //Use API version 2 if you want to use Errbit
   daemonport : 4135,
-  purgerinterval : 60 //in seconds
+  purgerinterval : 60,//in seconds
+  statsd : {
+     reportenabled : true,
+     host : "your statsd host",
+     port : 8192
+  }
 }
