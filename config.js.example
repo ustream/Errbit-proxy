@@ -4,6 +4,9 @@
   apiversion : 2, //Use API version 2 if you want to use Errbit
   daemonport : 4135,
   purgerinterval : 60,//in seconds
+  log : {
+     backend : "stdout" // use syslog if you want to log to syslog
+  },
   statsd : {
      reportenabled : true,
      host : "your statsd host",
