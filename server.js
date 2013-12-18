@@ -7,7 +7,7 @@ var dgram = require("dgram"),
 
 config.configFile(process.argv[2], function (config, oldConfig) {
     l = new logger.Logger(config.log || {});
-    statsdClient = new Statsd(config.statsd.host, config.statsd.host);
+    statsdClient = new Statsd(config.statsd.host, config.statsd.port);
     Reassembler = new reassembler.Reassembler(config, statsdClient);
     parser = new errorparser.ErrorParser(config, l, statsdClient);
 
