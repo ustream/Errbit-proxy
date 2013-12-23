@@ -1,10 +1,12 @@
 {
   proto : "https",
+  requirevalidcert : false //put here false if you use self signed certs. Ignored when proto is http
   host    :"YOUR ERRBIT HOST, OR api.airbrake.io FOR AIRBRAKE",
   port : 80,
   apiversion : 2, //Use API version 2 if you want to use Errbit
   daemonport : 4135,
   purgerinterval : 60,//in seconds
+  deprectiontime : 60,//Deprecation time of exception in seconds, use "disabled" to forward all errs.
   log : {
      backend : "stdout" // use syslog if you want to log to syslog
   },
