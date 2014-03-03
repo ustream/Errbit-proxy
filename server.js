@@ -3,6 +3,7 @@ var dgram = require("dgram"),
     errorparser = require('./lib/errorparser')
     config = require('./lib/config')
     statsd = require('./lib/statsd')
+    RateLimiter = require('limiter').RateLimiter
     reassembler = require('./lib/reassembler');
 
 config.configFile(process.argv[2], function (config, oldConfig) {
@@ -13,6 +14,8 @@ config.configFile(process.argv[2], function (config, oldConfig) {
 
 
 var server = dgram.createSocket("udp4");
+var limiter = new RateLimiter(config.maxrequestsperminute, 'minute', true);
+
 
 server.on("error", function (err) {
   l.log("server error:\n" + err.stack, 'ERROR');
@@ -20,7 +23,13 @@ server.on("error", function (err) {
 });
 
 server.on("message", function (msg, rinfo) {
-    parser.forwardError(msg, Reassembler);
+  limiter.removeTokens(1, function(err, remainingRequests) {
+    if (remainingRequests < 0) {
+        l.log("Ratelimit has been reached, a msessage has been discarded", 'ERROR');
+    } else {
+        parser.forwardError(msg, Reassembler);
+    }
+  });
 });
 
 server.on("listening", function () {

@@ -7,6 +7,7 @@
   daemonport : 4135,
   purgerinterval : 60,//in seconds
   deprectiontime : 60,//Deprecation time of exception in seconds, use "disabled" to forward all errs.
+  maxrequestsperminute : 10000, //configure node ratelimiter
   log : {
      backend : "stdout" // use syslog if you want to log to syslog
   },
