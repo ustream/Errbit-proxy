@@ -21,3 +21,7 @@ Errbit-proxy helps you to send your errors in a non blocking way to Airbrake/Err
 
 Feel free to add support into your Errbit/Airbrake client. Pull requests are more than welcome
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ustream/errbit-proxy/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
